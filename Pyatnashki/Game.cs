@@ -20,8 +20,22 @@ namespace Pyatnashki
             fifteen = new int[length, length];
             FillArray();
             Randoming(fifteen);
-            PrintConsole.ShowTable(fifteen);
+            PrintConsole.PrintTable(fifteen);
+            
             Moving();
+        }
+
+        public void FillArray()
+        {
+            int count = 0;
+            for (int i = 0; i < fifteen.GetLength(0); i++)
+            {
+                for (int j = 0; j < fifteen.GetLength(1); j++)
+                {
+                    fifteen[i, j] = count;
+                    count++;
+                }
+            }
         }
 
         public void Randoming (int[,] fifteen)
@@ -50,35 +64,24 @@ namespace Pyatnashki
             }
         }
 
-        public void FillArray()
-        {
-            int count = 0;
-            for (int i = 0; i < fifteen.GetLength(0); i++)
-            {
-                for (int j = 0; j < fifteen.GetLength(1); j++)
-                {
-                    fifteen[i, j] = count;
-                    count++;
-                }
-            }
-        }
-
         public void Moving()
         {
             int choised = 0;
 
-            do
-            {
-                PrintConsole.Warning();
-                choised = Convert.ToInt32(Console.ReadLine());
+            PrintConsole.Warning();
+            choised = PrintConsole.EnterTheNumber(choised);
 
-            } while (CheckZero(choised) != true);
+            while (CheckZero(choised) == false)
+            {
+                PrintConsole.ErrorWarning();
+                choised = PrintConsole.EnterTheNumber(choised);
+            }
 
             int temp = fifteen[zeroX, zeroY];
             fifteen[zeroX, zeroY] = fifteen[choisedX, choisedY];
             fifteen[choisedX, choisedY] = temp;
             
-            PrintConsole.ShowTable(fifteen);
+            PrintConsole.PrintTable(fifteen);
 
             Moving();
             
