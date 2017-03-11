@@ -11,13 +11,16 @@ namespace Pyatnashki
         int[,] fifteen;
         int zeroX;
         int zeroY;
-        int choisedX = 0;
-        int choisedY = 0;
+        int selectedX = 0;
+        int selectedY = 0;
 
 
-        public Game(int length)
+        public Game()
         {
-            fifteen = new int[length, length];
+            int length = 0;
+            PrintConsole.PrintSize();
+            int l = PrintConsole.EnterTheNumber(length);
+            fifteen = new int[l, l];
             FillArray();
             Randoming(fifteen);
             PrintConsole.PrintTable(fifteen);
@@ -66,20 +69,20 @@ namespace Pyatnashki
 
         public void Moving()
         {
-            int choised = 0;
+            int selected = 0;
 
-            PrintConsole.Warning();
-            choised = PrintConsole.EnterTheNumber(choised);
+            PrintConsole.PrintWarning();
+            selected = PrintConsole.EnterTheNumber(selected);
 
-            while (CheckZero(choised) == false)
+            while (CheckZero(selected) == false)
             {
-                PrintConsole.ErrorWarning();
-                choised = PrintConsole.EnterTheNumber(choised);
+                PrintConsole.PrintErrorWarning();
+                selected = PrintConsole.EnterTheNumber(selected);
             }
 
             int temp = fifteen[zeroX, zeroY];
-            fifteen[zeroX, zeroY] = fifteen[choisedX, choisedY];
-            fifteen[choisedX, choisedY] = temp;
+            fifteen[zeroX, zeroY] = fifteen[selectedX, selectedY];
+            fifteen[selectedX, selectedY] = temp;
             
             PrintConsole.PrintTable(fifteen);
 
@@ -87,28 +90,28 @@ namespace Pyatnashki
             
         }
 
-        public bool CheckZero(int choised)
+        public bool CheckZero(int selected)
         {
             for (int i = 0; i < fifteen.GetLength(0); i++)
             {
                 for (int j = 0; j < fifteen.GetLength(1); j++)
                 {
-                    if (fifteen[i,j] == choised)
+                    if (fifteen[i,j] == selected)
                     {
-                        choisedX = i;
-                        choisedY = j;
+                        selectedX = i;
+                        selectedY = j;
                     }
                 }
             }
 
-            if (Math.Sqrt(Math.Pow(choisedX-zeroX,2)+ Math.Pow(choisedY - zeroY, 2)) == 1)
+            if (Math.Sqrt(Math.Pow(selectedX-zeroX,2)+ Math.Pow(selectedY - zeroY, 2)) == 1)
             {
                 int temp = zeroX;
                 int temp2 = zeroY;
-                zeroX = choisedX;
-                zeroY = choisedY;
-                choisedX = temp;
-                choisedY = temp2;
+                zeroX = selectedX;
+                zeroY = selectedY;
+                selectedX = temp;
+                selectedY = temp2;
                 
                 return true;
             }

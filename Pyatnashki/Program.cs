@@ -10,7 +10,7 @@ namespace Pyatnashki
     {
         static void Main(string[] args)
         {
-            Game NewGame = new Game(4);
+            Game NewGame = new Game ();
         }
     }
 }

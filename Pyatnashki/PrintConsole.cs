@@ -23,14 +23,19 @@ namespace Pyatnashki
 
         }
 
-        public static void Warning()
+        public static void PrintWarning()
         {
             Console.Write("С каким числом поменять местами нолик? ");
         }
 
-        public static void ErrorWarning()
+        public static void PrintErrorWarning()
         {
             Console.Write("Ошибка! Введенное число находится далеко от нолика. С каким числом поменять местами нолик? ");
+        }
+
+        public static void PrintSize()
+        {
+            Console.WriteLine("Введите число. Оно будет являться размером игрового поля.");
         }
 
         public static int EnterTheNumber(int n)
