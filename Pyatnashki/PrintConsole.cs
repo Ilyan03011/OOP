@@ -15,7 +15,7 @@ namespace Pyatnashki
             {
                 for (int j = 0; j < fifteen.GetLength(1); j++)
                 {
-                    Console.Write(fifteen[i,j] + " "); 
+                    Console.Write(" " + "|" + fifteen[i,j] + "|" + " "); 
                 }
                 Console.WriteLine();
             }
@@ -26,7 +26,11 @@ namespace Pyatnashki
         {
             Console.Write("С каким числом поменять нолик ");
         }
-
+        
+        //public static void ErrorWarning()
+        //{
+        //    Console.Write("Ошибка! Введенное число находится далеко от нолика. С каким числом поменять нолик ");
+        //}
 
     }
 }

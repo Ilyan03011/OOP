@@ -11,17 +11,19 @@ namespace Pyatnashki
         int[,] fifteen;
         int zeroX;
         int zeroY;
-        int nX = 0;
-        int nY = 0;
+        int choisedX = 0;
+        int choisedY = 0;
 
 
         public Game(int length)
         {
             fifteen = new int[length, length];
             FillArray();
+            Randoming(fifteen);
             PrintConsole.ShowTable(fifteen);
             Moving();
         }
+
         public void Randoming (int[,] fifteen)
         {
             Random Gen = new Random();
@@ -38,6 +40,12 @@ namespace Pyatnashki
                     int temp = fifteen[iran, jran];
                     fifteen[iran, jran] = fifteen[i, j];
                     fifteen[i, j] = temp;
+
+                    if (fifteen[i, j] == 0)
+                    {
+                        zeroX = i;
+                        zeroY = j;
+                    }
                 }
             }
         }
@@ -51,30 +59,24 @@ namespace Pyatnashki
                 {
                     fifteen[i, j] = count;
                     count++;
-
-                    if (fifteen[i, j] == 0)
-                    {
-                        zeroX = i;
-                        zeroY = j;
-                    }
                 }
             }
         }
 
         public void Moving()
         {
-            int n = 0;
+            int choised = 0;
 
             do
             {
                 PrintConsole.Warning();
-                n = Convert.ToInt32(Console.ReadLine());
+                choised = Convert.ToInt32(Console.ReadLine());
 
-            } while (CheckZero(n) != true);
+            } while (CheckZero(choised) != true);
 
             int temp = fifteen[zeroX, zeroY];
-            fifteen[zeroX, zeroY] = fifteen[nX, nY];
-            fifteen[nX, nY] = temp;
+            fifteen[zeroX, zeroY] = fifteen[choisedX, choisedY];
+            fifteen[choisedX, choisedY] = temp;
             
             PrintConsole.ShowTable(fifteen);
 
@@ -82,28 +84,28 @@ namespace Pyatnashki
             
         }
 
-        public bool CheckZero(int n)
+        public bool CheckZero(int choised)
         {
             for (int i = 0; i < fifteen.GetLength(0); i++)
             {
                 for (int j = 0; j < fifteen.GetLength(1); j++)
                 {
-                    if (fifteen[i,j] == n)
+                    if (fifteen[i,j] == choised)
                     {
-                        nX = i;
-                        nY = j;
+                        choisedX = i;
+                        choisedY = j;
                     }
                 }
             }
 
-            if (Math.Sqrt(Math.Pow(nX-zeroX,2)+ Math.Pow(nY - zeroY, 2)) == 1)
+            if (Math.Sqrt(Math.Pow(choisedX-zeroX,2)+ Math.Pow(choisedY - zeroY, 2)) == 1)
             {
                 int temp = zeroX;
                 int temp2 = zeroY;
-                zeroX = nX;
-                zeroY = nY;
-                nX = temp;
-                nY = temp2;
+                zeroX = choisedX;
+                zeroY = choisedY;
+                choisedX = temp;
+                choisedY = temp2;
                 
                 return true;
             }
