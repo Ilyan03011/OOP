@@ -15,14 +15,15 @@ namespace Pyatnashki
         int selectedY = 0;
 
 
-        public Game()
+        public Game(int length)
         {
-            int length = 0;
-            PrintConsole.PrintSize();
-            int l = PrintConsole.EnterTheNumber(length);
-            fifteen = new int[l, l];
+            //int length = 0;
+            //PrintConsole.PrintSize();
+            //int l = PrintConsole.EnterTheNumber(length);
+            //fifteen = new int[l, l];
+            fifteen = new int[length, length];
             FillArray();
-            Randoming(fifteen);
+            //Randoming(fifteen);
             PrintConsole.PrintTable(fifteen);
             
             Moving();
@@ -37,26 +38,6 @@ namespace Pyatnashki
                 {
                     fifteen[i, j] = count;
                     count++;
-                }
-            }
-        }
-
-        public void Randoming (int[,] fifteen)
-        {
-            Random Gen = new Random();
-            int iran = 0;
-            int jran = 0;
-
-            for (int i = 0; i < fifteen.GetLength(0); i++)
-            {
-                for (int j = 0; j < fifteen.GetLength(1); j++)
-                {
-                    iran = Gen.Next(0, fifteen.GetLength(0));
-                    jran = Gen.Next(0, fifteen.GetLength(1));
-
-                    int temp = fifteen[iran, jran];
-                    fifteen[iran, jran] = fifteen[i, j];
-                    fifteen[i, j] = temp;
 
                     if (fifteen[i, j] == 0)
                     {
@@ -66,6 +47,32 @@ namespace Pyatnashki
                 }
             }
         }
+
+        //public void Randoming (int[,] fifteen)
+        //{
+        //    Random Gen = new Random();
+        //    int iran = 0;
+        //    int jran = 0;
+
+        //    for (int i = 0; i < fifteen.GetLength(0); i++)
+        //    {
+        //        for (int j = 0; j < fifteen.GetLength(1); j++)
+        //        {
+        //            iran = Gen.Next(0, fifteen.GetLength(0));
+        //            jran = Gen.Next(0, fifteen.GetLength(1));
+
+        //            int temp = fifteen[iran, jran];
+        //            fifteen[iran, jran] = fifteen[i, j];
+        //            fifteen[i, j] = temp;
+
+        //            if (fifteen[i, j] == 0)
+        //            {
+        //                zeroX = i;
+        //                zeroY = j;
+        //            }
+        //        }
+        //    }
+        //}
 
         public void Moving()
         {
@@ -85,7 +92,6 @@ namespace Pyatnashki
             fifteen[selectedX, selectedY] = temp;
             
             PrintConsole.PrintTable(fifteen);
-
             Moving();
             
         }

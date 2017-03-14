@@ -15,10 +15,9 @@ namespace Pyatnashki
             {
                 for (int j = 0; j < fifteen.GetLength(1); j++)
                 {
-                    Console.Write("  " + "|" + fifteen[i,j] + "|" + "  "); 
+                    Console.Write(fifteen[i,j] + "\t"); 
                 }
-                Console.WriteLine();
-                Console.WriteLine();
+                Console.WriteLine("\n");
             }
 
         }
@@ -33,10 +32,10 @@ namespace Pyatnashki
             Console.Write("Ошибка! Введенное число находится далеко от нолика. С каким числом поменять местами нолик? ");
         }
 
-        public static void PrintSize()
-        {
-            Console.WriteLine("Введите число. Оно будет являться размером игрового поля.");
-        }
+        //public static void PrintSize()
+        //{
+        //    Console.WriteLine("Введите число. Оно будет являться размером игрового поля.");
+        //}
 
         public static int EnterTheNumber(int n)
         {
