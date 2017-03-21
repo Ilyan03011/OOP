@@ -32,10 +32,10 @@ namespace Pyatnashki
             Console.Write("Ошибка! Введенное число находится далеко от нолика. С каким числом поменять местами нолик? ");
         }
 
-        //public static void PrintSize()
-        //{
-        //    Console.WriteLine("Введите число. Оно будет являться размером игрового поля.");
-        //}
+        public static void PrintSize()
+        {
+            Console.WriteLine("Введите число. Оно будет являться размером игрового поля.");
+        }
 
         public static int EnterTheNumber(int n)
         {
